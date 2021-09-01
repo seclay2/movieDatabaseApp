@@ -8,8 +8,7 @@ public class ConnectionManager {
 
     ConnectionManager(String url, String user, String pass) {
         this.connection = openConnection(url, user, pass);
-        if (connection != null) try { queryTest();} catch(SQLException e) {e.printStackTrace();}
-        else System.exit(1);
+        if (connection != null) queryTest();
     }
 
     public Connection openConnection(String url, String user, String pass) {
@@ -23,18 +22,22 @@ public class ConnectionManager {
         }
     }
 
-    private void queryTest() throws SQLException{
-        Statement stmt = this.connection.createStatement();
-        ResultSet rs = stmt.executeQuery("Select * from movies_view");
-        while (rs.next()) {
-            // Retrieve by column name
-            System.out.print(rs.getDate("date"));
-            System.out.print(", " +rs.getString("title"));
-            System.out.print(", " + rs.getInt("release_year"));
-            System.out.print(", " + rs.getInt("runtime"));
-            System.out.print(", " + rs.getString("platform_name"));
-            System.out.print(", " + rs.getFloat("cost"));
-            System.out.print("\n");
+    private void queryTest() {
+        try {
+            Statement stmt = this.connection.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from movies_view");
+            while (rs.next()) {
+                // Retrieve by column name
+                System.out.print(rs.getDate("date"));
+                System.out.print(", " + rs.getString("title"));
+                System.out.print(", " + rs.getInt("release_year"));
+                System.out.print(", " + rs.getInt("runtime"));
+                System.out.print(", " + rs.getString("platform_name"));
+                System.out.print(", " + rs.getFloat("cost"));
+                System.out.print("\n");
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
         }
     }
 
