@@ -136,6 +136,7 @@ public class PostgreSqlDao implements Dao<Movie, Integer> {
                 statement.setInt(2, nonNullMovie.getReleaseYear());
                 statement.setInt(3, nonNullMovie.getRuntime());
                 statement.setString(4, nonNullMovie.getImdbId());
+                statement.setInt(5, nonNullMovie.getId());
 
                 int numberOfUpdatedRows = statement.executeUpdate();
 

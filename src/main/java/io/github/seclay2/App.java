@@ -31,19 +31,22 @@ public class App
         }
 
         // Test whether a movie can be added to the database
-        Movie movie = new Movie("TestMovie", 2020, 100, "tt12345");
-        addMovie(movie).ifPresent(movie::setId);
+        Movie firstMovie = new Movie("firstMovie", 2020, 100, "tt12345");
+        addMovie(firstMovie).ifPresent(firstMovie::setId);
+
+        Movie secondMovie = new Movie("secondMovie", 2020, 100, "tt23456");
+        addMovie(secondMovie).ifPresent(secondMovie::setId);
 
         // Test whether new movie's details can be edited
-        movie.setReleaseYear(2000);
-        movie.setRuntime(90);
-        updateMovie(movie);
+        secondMovie.setReleaseYear(2000);
+        secondMovie.setRuntime(90);
+        updateMovie(secondMovie);
 
         // Test whether all movies can be read from database
         getAllMovies().forEach(System.out::println);
 
         // Test whether a movie can be deleted
-        deleteMovie(movie);
+        deleteMovie(firstMovie);
     }
 
     // static helper methods referenced above
