@@ -8,13 +8,13 @@ import java.util.Optional;
 
 public interface MovieService {
 
-    public Movie getMovie(int id) throws NonExistentMovieException;
+    Movie getMovie(int id) throws NonExistentMovieException;
 
-    public Collection<Movie> getAllMovies();
+    Collection<Movie> getAllMovies();
 
-    public void updateMovie(Movie movie);
+    void updateMovie(Movie movie);
 
-    public Optional<Integer> addMovie(Movie movie);
+    Optional<Integer> addMovie(Movie movie);
 
-    public void deleteMovie(Movie movie);
+    void deleteMovie(Movie movie);
 }
