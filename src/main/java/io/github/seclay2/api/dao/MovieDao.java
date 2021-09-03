@@ -1,4 +1,7 @@
-package io.github.seclay2.api;
+package io.github.seclay2.api.dao;
+
+import io.github.seclay2.api.JdbcConnection;
+import io.github.seclay2.api.entity.Movie;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,13 +11,13 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PostgreSqlDao implements Dao<Movie, Integer> {
+public class MovieDao implements Dao<Movie, Integer> {
 
     private static final Logger LOGGER =
-            Logger.getLogger(PostgreSqlDao.class.getName());
+            Logger.getLogger(MovieDao.class.getName());
     private final Optional<Connection> connection;
 
-    public PostgreSqlDao() {
+    public MovieDao() {
         this.connection = JdbcConnection.getConnection();
     }
 
@@ -64,9 +67,10 @@ public class PostgreSqlDao implements Dao<Movie, Integer> {
                     Movie movie = new Movie(id, title, releaseYear, runtime, imdbId);
 
                     movies.add(movie);
-
-                    LOGGER.log(Level.INFO, "Found {0} in database", movie);
                 }
+
+                LOGGER.log(Level.INFO, "{0} movies found in database", movies.size());
+
             } catch (SQLException e) {
                 LOGGER.log(Level.SEVERE, null, e);
             }
@@ -140,7 +144,7 @@ public class PostgreSqlDao implements Dao<Movie, Integer> {
 
                 int numberOfUpdatedRows = statement.executeUpdate();
 
-                LOGGER.log(Level.INFO, "Was the customer updated successfully? {0}",
+                LOGGER.log(Level.INFO, "Was the movie updated successfully? {0}",
                         numberOfUpdatedRows > 0);
             } catch (SQLException e) {
                 LOGGER.log(Level.SEVERE, null, e);
@@ -160,7 +164,7 @@ public class PostgreSqlDao implements Dao<Movie, Integer> {
 
                 int numberOfDeletedRows = statement.executeUpdate();
 
-                LOGGER.log(Level.INFO, "Was the movie deleted successfully? {0}",
+                 LOGGER.log(Level.INFO, "Was the movie deleted successfully? {0}",
                         numberOfDeletedRows > 0);
 
             } catch (SQLException e) {

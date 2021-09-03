@@ -1,4 +1,4 @@
-package io.github.seclay2.api;
+package io.github.seclay2.api.dao;
 
 import java.util.Collection;
 import java.util.Optional;

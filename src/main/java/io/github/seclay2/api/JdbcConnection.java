@@ -42,7 +42,7 @@ public class JdbcConnection {
     private static Properties loadProperties() {
         Properties appProps = new Properties();
         try {
-            Path propertyFile = Paths.get("src/main/resources/application2.properties");
+            Path propertyFile = Paths.get("src/main/resources/application.properties");
             Reader propsReader = Files.newBufferedReader(propertyFile);
             appProps.load(propsReader);
 

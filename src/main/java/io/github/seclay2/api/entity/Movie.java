@@ -1,4 +1,4 @@
-package io.github.seclay2.api;
+package io.github.seclay2.api.entity;
 
 public class Movie {
     private Integer id;
